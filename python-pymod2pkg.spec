@@ -1,5 +1,5 @@
 Name:             python-pymod2pkg
-Version:          0.1
+Version:          0.2
 Release:          1%{?dist}
 Summary:          python module name to package name map
 
@@ -38,5 +38,8 @@ their corresponding distro package names.
 
 
 %changelog
+* Thu Jul 23 2015 Jakub Ruzicka <jruzicka@redhat.com> 0.2-1
+- Update to 0.2
+
 * Fri Jul 17 2015 Jakub Ruzicka <jruzicka@redhat.com> 0.1-1
 - Initial version
