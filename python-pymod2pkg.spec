@@ -1,6 +1,6 @@
 Name:             python-pymod2pkg
 Version:          0.2
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          python module name to package name map
 
 Group:            Development/Languages
@@ -24,20 +24,25 @@ their corresponding distro package names.
 
 
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 
 
 %install
-%{__python} setup.py install -O1 --skip-build --root %{buildroot}
+%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
 
 %files
 %doc README.md
 %license LICENSE
-%{python_sitelib}/*
+%{python2_sitelib}/pymod2pkg.py*
+%{python2_sitelib}/pymod2pkg-%{version}-py?.?.egg-info
 
 
 %changelog
+* Wed Aug 05 2015 Jakub Ruzicka <jruzicka@redhat.com> 0.2-2
+- Use python versioned macros
+- List files instead of using wildcard
+
 * Thu Jul 23 2015 Jakub Ruzicka <jruzicka@redhat.com> 0.2-1
 - Update to 0.2
 
