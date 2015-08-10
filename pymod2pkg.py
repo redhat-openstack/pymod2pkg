@@ -61,7 +61,7 @@ RPM_PKG_MAP = [
     SingleRule('pycrypto', 'python-crypto'),
     SingleRule('pyzmq', 'python-zmq'),
     SingleRule('mysql-python', 'MySQL-python'),
-    SingleRule('pastedeploy', 'python-paste-deploy'),
+    SingleRule('PasteDeploy', 'python-paste-deploy'),
     SingleRule('sqlalchemy-migrate', 'python-migrate'),
     SingleRule('qpid-python', 'python-qpid'),
     SingleRule('posix_ipc', 'python-posix_ipc'),
