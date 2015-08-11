@@ -1,6 +1,6 @@
 Name:             python-pymod2pkg
-Version:          0.2
-Release:          2%{?dist}
+Version:          0.2.1
+Release:          1%{?dist}
 Summary:          python module name to package name map
 
 Group:            Development/Languages
@@ -39,6 +39,9 @@ their corresponding distro package names.
 
 
 %changelog
+* Tue Aug 11 2015 Jakub Ruzicka <jruzicka@redhat.com> 0.2.1-1
+- Update to 0.2.1
+
 * Wed Aug 05 2015 Jakub Ruzicka <jruzicka@redhat.com> 0.2-2
 - Use python versioned macros
 - List files instead of using wildcard
