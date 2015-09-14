@@ -76,14 +76,14 @@ RDO_PKG_MAP = [
 ]
 
 
-DEB_PKG_MAP = [
-    # Do what you gotta do, dear Debian Developer ;)
+SUSE_PKG_MAP = [
+    # Do what you gotta do ;)
 ]
 
 
 def get_pkg_map(dist):
-    if re.match('debian|ubuntu', dist):
-        return DEB_PKG_MAP
+    if dist.lower().find('suse') != -1:
+        return SUSE_PKG_MAP
     return RDO_PKG_MAP
 
 
