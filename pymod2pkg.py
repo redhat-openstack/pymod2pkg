@@ -51,7 +51,7 @@ def openstack_prefix_tr(mod):
     return 'openstack-' + mod
 
 
-RPM_PKG_MAP = [
+RDO_PKG_MAP = [
     # This demonstrates per-dist filter
     #SingleRule('sphinx', 'python-sphinx',
     #           distmap={'epel-6': 'python-sphinx10'}),
@@ -84,7 +84,7 @@ DEB_PKG_MAP = [
 def get_pkg_map(dist):
     if re.match('debian|ubuntu', dist):
         return DEB_PKG_MAP
-    return RPM_PKG_MAP
+    return RDO_PKG_MAP
 
 
 def module2package(mod, dist, pkg_map=None):
