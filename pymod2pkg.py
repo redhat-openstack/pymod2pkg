@@ -88,6 +88,12 @@ def get_pkg_map(dist):
 
 
 def module2package(mod, dist, pkg_map=None):
+    """Return a corresponding package name for a python module.
+
+    mod  -- python module name
+    dist -- a linux distribution as returned by
+            `platform.linux_distribution()[0]`
+    """
     if not pkg_map:
         pkg_map = get_pkg_map(dist)
     for rule in pkg_map:
