@@ -35,12 +35,16 @@ class MultiRule(TranslationRule):
         return None
 
 
-def default_tr(mod):
+def default_rdo_tr(mod):
     pkg = mod.rsplit('-python')[0]
     pkg = pkg.replace('_', '-').replace('.', '-').lower()
     if not pkg.startswith('python-'):
         pkg = 'python-' + pkg
     return pkg
+
+
+def default_suse_tr(mod):
+    return 'python-' + mod
 
 
 def openstack_prefix_tr(mod):
@@ -83,6 +87,12 @@ def get_pkg_map(dist):
     return RDO_PKG_MAP
 
 
+def get_default_tr_func(dist):
+    if dist.lower().find('suse') != -1:
+        return default_suse_tr
+    return default_rdo_tr
+
+
 def module2package(mod, dist, pkg_map=None):
     """Return a corresponding package name for a python module.
 
@@ -96,4 +106,5 @@ def module2package(mod, dist, pkg_map=None):
         pkg = rule(mod, dist)
         if pkg:
             return pkg
-    return default_tr(mod)
+    tr_func = get_default_tr_func(dist)
+    return tr_func(mod)
