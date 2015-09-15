@@ -43,10 +43,6 @@ def default_tr(mod):
     return pkg
 
 
-def exact_tr(mod):
-    return mod
-
-
 def openstack_prefix_tr(mod):
     return 'openstack-' + mod
 
