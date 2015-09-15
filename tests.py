@@ -36,6 +36,13 @@ class Pymod2PkgTests(unittest.TestCase):
         self.assertEqual(pymod2pkg.module2package('Babel', 'suse'),
                          'python-Babel')
 
+    def test_translation_suse(self):
+        self.assertEqual(pymod2pkg.module2package('nova', 'suse'),
+                         'openstack-nova')
+        self.assertEqual(pymod2pkg.module2package('python-neutronclient',
+                                                  'suse'),
+                         'python-neutronclient')
+
     def test_default_translation_rdo(self):
         self.assertEqual(pymod2pkg.module2package('oslo.db', 'fedora'),
                          'python-oslo-db')

@@ -77,7 +77,25 @@ RDO_PKG_MAP = [
 
 
 SUSE_PKG_MAP = [
-    # Do what you gotta do ;)
+    # OpenStack services
+    MultiRule(
+        # keep lists in alphabetic order
+        mods=['ceilometer', 'cinder', 'designate', 'glance',
+              'heat', 'ironic', 'keystone', 'manila',
+              'neutron', 'nova', 'rally', 'sahara', 'swift',
+              'tempest', 'trove', 'tuskar', 'zaqar'],
+        pkgfun=openstack_prefix_tr),
+    # OpenStack clients
+    MultiRule(
+        mods=['python-ceilometerclient', 'python-cinderclient',
+              'python-designateclient', 'python-glanceclient',
+              'python-heatclient', 'python-ironicclient',
+              'python-keystoneclient', 'python-manilaclient',
+              'python-neutronclient', 'python-novaclient',
+              'python-saharaclient', 'python-swiftclient',
+              'python-troveclient', 'python-tuskarclient',
+              'python-zaqarclient'],
+        pkgfun=lambda x: x),
 ]
 
 
