@@ -50,3 +50,8 @@ nice to have all the distros covered and it's really easy to do so.
 
 See `*_PKG_MAP` and `get_pkg_map`, hack it to your liking and send a pull
 request.
+
+## Running the testsuite
+It's just that simple:
+
+   python tests.py

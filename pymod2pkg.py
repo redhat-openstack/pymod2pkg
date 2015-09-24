@@ -35,7 +35,7 @@ class MultiRule(TranslationRule):
         return None
 
 
-def default_tr(mod):
+def default_rdo_tr(mod):
     pkg = mod.rsplit('-python')[0]
     pkg = pkg.replace('_', '-').replace('.', '-').lower()
     if not pkg.startswith('python-'):
@@ -43,8 +43,8 @@ def default_tr(mod):
     return pkg
 
 
-def exact_tr(mod):
-    return mod
+def default_suse_tr(mod):
+    return 'python-' + mod
 
 
 def openstack_prefix_tr(mod):
@@ -77,7 +77,25 @@ RDO_PKG_MAP = [
 
 
 SUSE_PKG_MAP = [
-    # Do what you gotta do ;)
+    # OpenStack services
+    MultiRule(
+        # keep lists in alphabetic order
+        mods=['ceilometer', 'cinder', 'designate', 'glance',
+              'heat', 'ironic', 'keystone', 'manila',
+              'neutron', 'nova', 'rally', 'sahara', 'swift',
+              'tempest', 'trove', 'tuskar', 'zaqar'],
+        pkgfun=openstack_prefix_tr),
+    # OpenStack clients
+    MultiRule(
+        mods=['python-ceilometerclient', 'python-cinderclient',
+              'python-designateclient', 'python-glanceclient',
+              'python-heatclient', 'python-ironicclient',
+              'python-keystoneclient', 'python-manilaclient',
+              'python-neutronclient', 'python-novaclient',
+              'python-saharaclient', 'python-swiftclient',
+              'python-troveclient', 'python-tuskarclient',
+              'python-zaqarclient'],
+        pkgfun=lambda x: x),
 ]
 
 
@@ -85,6 +103,12 @@ def get_pkg_map(dist):
     if dist.lower().find('suse') != -1:
         return SUSE_PKG_MAP
     return RDO_PKG_MAP
+
+
+def get_default_tr_func(dist):
+    if dist.lower().find('suse') != -1:
+        return default_suse_tr
+    return default_rdo_tr
 
 
 def module2package(mod, dist, pkg_map=None):
@@ -100,4 +124,5 @@ def module2package(mod, dist, pkg_map=None):
         pkg = rule(mod, dist)
         if pkg:
             return pkg
-    return default_tr(mod)
+    tr_func = get_default_tr_func(dist)
+    return tr_func(mod)
